@@ -15,6 +15,7 @@ const hbs = require("hbs");
 
 const app = express();
 
+require('./config/session.config')(app);
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -23,6 +24,17 @@ const capitalized = require("./utils/capitalized");
 const projectName = "game-realm";
 
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
+
+app.use((req, res, next) => {
+    if (req.session.currentUser === undefined) {
+      app.set('view options', { layout: 'loggedout-layout' });
+    } else {
+      app.set('view options', { layout: 'loggedin-layout' });
+    }
+  
+    next();
+  });
+   
 
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
