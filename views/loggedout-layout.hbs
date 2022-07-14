@@ -16,19 +16,21 @@
       style="background-image: url(/images/playstation_btns.jpg)">
   <header class="justify-content-around">
       <nav class="navbar bg-dark text-white mb-auto justify-content-around">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex justify-content-around">
           <div class="navbar-header">
             <a class="navbar-brand text-white" href="/">Game Realms</a>
           </div>
-          <form class="navbar-form navbar-left d-flex" action="/action_page.php">
+          <form class="navbar-form navbar-left d-flex w-auto" action="/action_page.php">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search" name="search">
             </div>
             <button type="submit" class="btn btn-default text-white"><i class="bi bi-search"></i></button>
           </form>
           <ul class="nav navbar-nav d-flex">
-            <li><a href="/signup">Sign up</a></li>
-            <li><a href="/login">Log in</a></li>
+            <div class="d-flex">
+              <li class="me-1"><a href="/signup">Sign up</a></li>
+              <li class="ms-1"><a href="/login">Log in</a></li>
+            </div>
           </ul>
         </div>
       </nav>

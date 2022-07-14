@@ -48,10 +48,15 @@ router.post("/login", (req, res, next) => {
 		.catch((error) => next(error));
 });
 
-router.get("/logout", (req, res) => {
-	req.logout();
-	req.session = null;
-	res.redirect("/");
+router.get("/logout", (req, res, next) => {
+	console.log(req.session, "first");
+	req.session.destroy((error) => {
+		if (error) {
+			next(error);
+		}
+		console.log(req.session, "second");
+		res.redirect("/");
+	});
 });
 
 router.get("/userProfile", (req, res, next) => {
