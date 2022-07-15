@@ -9,6 +9,7 @@
 	"dependencies": {
 		"axios": "^0.27.2",
 		"bcrypt": "^5.0.1",
+		"bcryptjs": "^2.4.3",
 		"bootstrap-icons": "^1.8.3",
 		"connect-mongo": "^4.6.0",
 		"cookie-parser": "^1.4.6",
