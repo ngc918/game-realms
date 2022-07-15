@@ -3,6 +3,7 @@ const router = new Router();
 
 const bcryptjs = require("bcryptjs");
 const User = require("../models/User.model");
+const Game = require("../models/Game.model");
 const saltRounds = 10;
 
 // GET route ==> to display the signup form to users
@@ -60,7 +61,32 @@ router.get("/logout", (req, res, next) => {
 });
 
 router.get("/userProfile", (req, res, next) => {
-	res.render("users/user-profile", { userSession: req.session.currentUser });
+	User.findById(req.session.currentUser._id)
+		.populate("gamesArray")
+		.then((response) => {
+			console.log(response.gamesArray, "hello");
+			res.render("users/user-profile", {
+				gameList: response.gamesArray,
+				userSession: req.session.currentUser,
+			});
+		});
+});
+
+router.get("/gameDelete/:id/delete", (req, res, next) => {
+	const { id } = req.params;
+	Game.findByIdAndDelete(id)
+		.then((response) => {
+			console.log(response);
+			User.findByIdAndUpdate(
+				req.session.currentUser._id,
+				{
+					$pull: { gamesArray: response._id },
+				},
+				{ new: true }
+			).then((updatedUser) => console.log(updatedUser));
+			res.redirect("/userProfile");
+		})
+		.catch((error) => next(error));
 });
 
 module.exports = router;

@@ -1,11 +1,23 @@
-<div>
-	{{#each games}}
-		<p>{{names}}</p>
-		<div
-			style="background-size:cover;width:200px;height:200px; background-image: `url(${{{url}}})`
-"
-		>
+<div
+	class="game-container"
+	style="background-image: url(/images/playstation_btns.jpg) opacity-50"
+>
+	{{#each gamesArray}}
+		<div class="game-card">
+			<div class="card shadow">
+				<img src="{{this.cover.url}}" class="card-img-top" />
+				<div class="card-body">
+					<h5 class="card-title">{{this.name}}</h5>
 
+					<p class="card-text">{{this.summary}}</p>
+					<a
+						href="/games/{{this.id}}"
+						class="btn btn-primary stretched-link"
+					>Game Info</a>
+				</div>
+
+			</div>
 		</div>
 	{{/each}}
+
 </div>

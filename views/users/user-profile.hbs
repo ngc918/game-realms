@@ -1,1 +1,21 @@
-<h2>Welcome to Your Profile</h2>
+<h2>Hi there {{userSession.username}}</h2>
+<div class="userCard">
+	{{#each gameList}}
+		<div class="game-card">
+			<div class="card shadow">
+				<img src="{{coverUrl}}" class="card-img-top" />
+				<div class="card-body">
+					<h5 class="card-title">{{this.name}}</h5>
+
+					<p class="card-text">{{summary}}</p>
+					<a
+						href="/gameDelete/{{_id}}/delete"
+						class="btn btn-primary"
+					>Delete</a>
+				</div>
+
+			</div>
+		</div>
+	{{/each}}
+
+</div>

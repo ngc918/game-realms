@@ -1,15 +1,8 @@
 const { Schema, model } = require("mongoose");
 
 const gameSchema = new Schema({
-	_id: {
-		type: Number,
-	},
-	igdbId: [
-		{
-			type: Number,
-		},
-	],
-	coverId: {
+	name: String,
+	igdbId: {
 		type: Number,
 	},
 	coverUrl: {
@@ -18,8 +11,10 @@ const gameSchema = new Schema({
 	summary: {
 		type: String,
 	},
+	genres: [String],
 	userId: {
-		type: Number,
+		type: Schema.Types.ObjectId,
+		ref: "User",
 	},
 });
 

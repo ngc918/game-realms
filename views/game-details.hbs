@@ -1,0 +1,34 @@
+<body class="d-flex mt-1">
+	<div class="d-flex">
+		<div class="gamepage_1">
+			<img src="{{game.cover.url}}" alt="" class="game_page" />
+			<h1 class="">{{game.name}}</h1>
+			<ul class="">
+				{{#each game.genres}}
+					<li class="margin-1">{{this.name}}</li>
+				{{/each}}
+			</ul>
+		</div>
+		<div class="d-flex m-3">
+			<p class="fs-2 mx-3">{{game.summary}}</p>
+		</div>
+	</div>
+	<div class="add-button">
+		<form action="/games/save" method="post" class="">
+			<input type="text" name="name" value="{{game.name}}" class="hide" />
+			<input type="text" name="summary" value="{{game.summary}}" class="hide" />
+			<input
+				type="text"
+				name="coverUrl"
+				value="{{game.cover.url}}"
+				class="hide"
+			/>
+			<input type="text" name="igdbId" value="{{game.id}}" class="hide" />
+			{{#each game.genres}}
+				<input type="text" name="genres" value="{{this.name}}" class="hide" />
+			{{/each}}
+			<button type="submit" class="btn btn-primary justify-content-center">Add
+				to Game List</button>
+		</form>
+	</div>
+</body>
