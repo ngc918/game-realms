@@ -87,7 +87,7 @@ router.get("/games/:gameId", (req, res, next) => {
 		method: "POST",
 		headers: {
 			Accept: "application/json",
-			"Client-ID": "t4hwthrv9ka93t92dd4nlj4gm339nn",
+			"Client-ID": process.env.client_id,
 			Authorization: `Bearer ${process.env.access_token}`,
 		},
 		data: `fields name, cover.url, summary, genres.name; where id = ${gameId};`,
